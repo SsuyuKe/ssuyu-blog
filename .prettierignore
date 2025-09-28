@@ -1,0 +1,34 @@
+# 依賴文件
+node_modules/
+.next/
+out/
+dist/
+build/
+
+# 生產相關文件
+*.min.js
+*.min.css
+
+# 系統文件
+.DS_Store
+*.log
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE 文件
+.vscode/
+.idea/
+
+# 其他
+coverage/
+.yarn/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Next.js 特定文件
+.next/
+out/

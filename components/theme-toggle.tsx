@@ -1,16 +1,16 @@
-'use client'
+'use client';
 
-import { useEffect, useState } from 'react'
-import { Sun, Moon } from 'lucide-react'
-import { useTheme } from 'next-themes'
-import { Button } from '@/components/ui/button'
-import clsx from 'clsx'
+import { useEffect, useState } from 'react';
+import { Sun, Moon } from 'lucide-react';
+import { useTheme } from 'next-themes';
+import { Button } from '@/components/ui/button';
+import clsx from 'clsx';
 
 export default function ThemeToggle() {
-  const { theme, setTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
-  useEffect(() => setMounted(true), [])
+  useEffect(() => setMounted(true), []);
 
   if (!mounted) {
     // SSR 時先不渲染 icon
@@ -18,11 +18,10 @@ export default function ThemeToggle() {
       <Button variant="ghost" size="icon" className="relative">
         <span className="sr-only">Toggle theme</span>
       </Button>
-    )
+    );
   }
 
-  const isDark = theme === 'dark'
-  const safeTheme = theme || 'light'
+  const isDark = theme === 'dark';
 
   return (
     <Button
@@ -49,5 +48,5 @@ export default function ThemeToggle() {
       />
       <span className="sr-only">Toggle theme</span>
     </Button>
-  )
+  );
 }

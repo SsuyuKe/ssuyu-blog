@@ -1,18 +1,18 @@
-'use client'
+'use client';
 
-import { useState, useEffect } from 'react'
-import { useTheme } from 'next-themes'
-import ThemeToggle from './theme-toggle'
-import clsx from 'clsx'
+import { useState, useEffect } from 'react';
+import { useTheme } from 'next-themes';
+import ThemeToggle from './theme-toggle';
+import clsx from 'clsx';
 
 export default function Header() {
-  const { theme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-  const [isOpen, setIsOpen] = useState(false)
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => setMounted(true), [])
+  useEffect(() => setMounted(true), []);
 
-  const safeTheme = mounted ? theme || 'light' : 'light'
+  const safeTheme = mounted ? theme || 'light' : 'light';
 
   return (
     <header
@@ -131,5 +131,5 @@ export default function Header() {
       {/* 主題切換按鈕 */}
       <ThemeToggle />
     </header>
-  )
+  );
 }

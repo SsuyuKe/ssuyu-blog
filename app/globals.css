@@ -78,14 +78,14 @@
   --sidebar-ring: oklch(0.708 0 0);
 
   /* === 品牌色 ==== */
-  --color-brand-bg-light: #F5F5F5;
-  --color-brand-card-light: #FFFFFF;
-  --color-brand-text-light: #1B1D23;
+  --color-brand-bg-light: #f5f5f5;
+  --color-brand-card-light: #ffffff;
+  --color-brand-text-light: #1b1d23;
   --color-brand-text-secondary-light: #555555;
-  --color-brand-accent-light: #C83E6B;
-  --color-brand-accent-hover-light: #D94F7B;
-  --color-brand-accent-active-light: #A8325C;
-  --color-brand-line-light: #E0E0E0;
+  --color-brand-accent-light: #c83e6b;
+  --color-brand-accent-hover-light: #d94f7b;
+  --color-brand-accent-active-light: #a8325c;
+  --color-brand-line-light: #e0e0e0;
 }
 
 .dark {
@@ -122,14 +122,14 @@
   --sidebar-ring: oklch(0.556 0 0);
 
   /* === 品牌色 ==== */
-  --color-brand-bg-dark: #1B1D23;
-  --color-brand-card-dark: #15171D;
-  --color-brand-text-dark: #E0E0E0;
-  --color-brand-text-secondary-dark: #A0A0A0;
-  --color-brand-accent-dark: #C83E6B;
-  --color-brand-accent-hover-dark: #D94F7B;
-  --color-brand-accent-active-dark: #A8325C;
-  --color-brand-line-dark: #2C2F38;
+  --color-brand-bg-dark: #1b1d23;
+  --color-brand-card-dark: #15171d;
+  --color-brand-text-dark: #e0e0e0;
+  --color-brand-text-secondary-dark: #a0a0a0;
+  --color-brand-accent-dark: #c83e6b;
+  --color-brand-accent-hover-dark: #d94f7b;
+  --color-brand-accent-active-dark: #a8325c;
+  --color-brand-line-dark: #2c2f38;
 }
 
 @layer base {
