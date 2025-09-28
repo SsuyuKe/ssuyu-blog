@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import ThemeToggle from './theme-toggle';
-import clsx from 'clsx';
+import { cn } from '@/lib/utils/cn';
 
 export default function Header() {
   const { theme } = useTheme();
@@ -16,7 +16,7 @@ export default function Header() {
 
   return (
     <header
-      className={clsx(
+      className={cn(
         'fixed top-0 left-0 w-full z-50',
         'bg-opacity-70 backdrop-blur-md',
         'flex justify-between items-center p-6',
@@ -27,7 +27,7 @@ export default function Header() {
     >
       {/* Logo */}
       <div
-        className={clsx(
+        className={cn(
           'font-bold text-xl',
           safeTheme === 'dark' ? 'text-dark-accent' : 'text-light-accent'
         )}
@@ -40,17 +40,17 @@ export default function Header() {
         {/* 桌面選單 */}
         <ul className="hidden md:flex gap-6">
           <li>
-            <a className={clsx(`hover:${safeTheme}-accentHover`)} href="#">
+            <a className={cn(`hover:${safeTheme}-accentHover`)} href="#">
               Home
             </a>
           </li>
           <li>
-            <a className={clsx(`hover:${safeTheme}-accentHover`)} href="#">
+            <a className={cn(`hover:${safeTheme}-accentHover`)} href="#">
               Projects
             </a>
           </li>
           <li>
-            <a className={clsx(`hover:${safeTheme}-accentHover`)} href="#">
+            <a className={cn(`hover:${safeTheme}-accentHover`)} href="#">
               Contact
             </a>
           </li>
@@ -88,7 +88,7 @@ export default function Header() {
         {/* 手機下拉選單 */}
         {isOpen && (
           <ul
-            className={clsx(
+            className={cn(
               'absolute top-full right-0 mt-2 w-40 rounded shadow-md',
               `bg-${safeTheme}-bg border border-${safeTheme}-line`,
               'flex flex-col p-2 gap-2'
@@ -96,7 +96,7 @@ export default function Header() {
           >
             <li>
               <a
-                className={clsx(
+                className={cn(
                   `block px-4 py-2 hover:bg-${safeTheme}-accentHover text-${safeTheme}-text`
                 )}
                 href="#"
@@ -106,7 +106,7 @@ export default function Header() {
             </li>
             <li>
               <a
-                className={clsx(
+                className={cn(
                   `block px-4 py-2 hover:bg-${safeTheme}-accentHover text-${safeTheme}-text`
                 )}
                 href="#"
@@ -116,7 +116,7 @@ export default function Header() {
             </li>
             <li>
               <a
-                className={clsx(
+                className={cn(
                   `block px-4 py-2 hover:bg-${safeTheme}-accentHover text-${safeTheme}-text`
                 )}
                 href="#"
@@ -126,10 +126,9 @@ export default function Header() {
             </li>
           </ul>
         )}
+        {/* 主題切換按鈕 */}
+        <ThemeToggle />
       </nav>
-
-      {/* 主題切換按鈕 */}
-      <ThemeToggle />
     </header>
   );
 }
