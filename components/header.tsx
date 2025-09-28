@@ -1,0 +1,135 @@
+'use client'
+
+import { useState, useEffect } from 'react'
+import { useTheme } from 'next-themes'
+import ThemeToggle from './theme-toggle'
+import clsx from 'clsx'
+
+export default function Header() {
+  const { theme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+
+  useEffect(() => setMounted(true), [])
+
+  const safeTheme = mounted ? theme || 'light' : 'light'
+
+  return (
+    <header
+      className={clsx(
+        'fixed top-0 left-0 w-full z-50',
+        'bg-opacity-70 backdrop-blur-md',
+        'flex justify-between items-center p-6',
+        safeTheme === 'dark'
+          ? 'bg-dark-bg text-dark-text border-b border-dark-line'
+          : 'bg-light-bg text-light-text border-b border-light-line'
+      )}
+    >
+      {/* Logo */}
+      <div
+        className={clsx(
+          'font-bold text-xl',
+          safeTheme === 'dark' ? 'text-dark-accent' : 'text-light-accent'
+        )}
+      >
+        MyPortfolio
+      </div>
+
+      {/* 菜單 & 漢堡 */}
+      <nav className="flex items-center">
+        {/* 桌面選單 */}
+        <ul className="hidden md:flex gap-6">
+          <li>
+            <a className={clsx(`hover:${safeTheme}-accentHover`)} href="#">
+              Home
+            </a>
+          </li>
+          <li>
+            <a className={clsx(`hover:${safeTheme}-accentHover`)} href="#">
+              Projects
+            </a>
+          </li>
+          <li>
+            <a className={clsx(`hover:${safeTheme}-accentHover`)} href="#">
+              Contact
+            </a>
+          </li>
+        </ul>
+
+        {/* 漢堡按鈕 */}
+        <button
+          className="md:hidden ml-4 p-2 rounded focus:outline-none"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <svg
+            className="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            {isOpen ? (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            ) : (
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            )}
+          </svg>
+        </button>
+
+        {/* 手機下拉選單 */}
+        {isOpen && (
+          <ul
+            className={clsx(
+              'absolute top-full right-0 mt-2 w-40 rounded shadow-md',
+              `bg-${safeTheme}-bg border border-${safeTheme}-line`,
+              'flex flex-col p-2 gap-2'
+            )}
+          >
+            <li>
+              <a
+                className={clsx(
+                  `block px-4 py-2 hover:bg-${safeTheme}-accentHover text-${safeTheme}-text`
+                )}
+                href="#"
+              >
+                Home
+              </a>
+            </li>
+            <li>
+              <a
+                className={clsx(
+                  `block px-4 py-2 hover:bg-${safeTheme}-accentHover text-${safeTheme}-text`
+                )}
+                href="#"
+              >
+                Projects
+              </a>
+            </li>
+            <li>
+              <a
+                className={clsx(
+                  `block px-4 py-2 hover:bg-${safeTheme}-accentHover text-${safeTheme}-text`
+                )}
+                href="#"
+              >
+                Contact
+              </a>
+            </li>
+          </ul>
+        )}
+      </nav>
+
+      {/* 主題切換按鈕 */}
+      <ThemeToggle />
+    </header>
+  )
+}
