@@ -51,24 +51,24 @@
   --button-dark: #121212; /* 全黑 */
   --button-dark-hover: #383838; /* 全黑 hover */
   --primary-hover: #d94f7b; /* 主要按鈕 hover */
-  --radius: 0.625rem; /*  */
+  --radius: 0.625rem;
   /* Light Theme - 暗粉風格 */
-  --background: #f5f5f5; /* V淺灰背景 */
-  --foreground: #1b1d23; /* V文字深灰 */
-  --primary: #c83e6b; /* V主要按鈕/互動色 */
-  --primary-foreground: #ffffff; /* V主要互動文字 */
-  --accent: #e1e1e1; /* Vhover / 次要互動背景 */
-  --accent-foreground: #c83e6b; /* Vhover / 次要文字 */
-  --border: #c8c8c8; /* V邊框 */
-  --input: #c8c8c8; /* V輸入框背景 */
-  --card: #f5f5f5; /* V卡片背景 */
-  --card-foreground: #1b1d23; /* V卡片文字 */
-  --popover: #f5f5f5; /* V彈出層背景 */
-  --popover-foreground: #1b1d23; /* V彈出層文字 */
-  --secondary: #e1e1e1; /* V次要按鈕/標籤背景 */
-  --secondary-foreground: #c83e6b; /* V次要文字 */
-  --muted: #e1e1e1; /* V靜態元素 / 禁用背景 */
-  --muted-foreground: #555555; /* V靜態文字 */
+  --background: #f5f5f5; /* 淺灰背景 */
+  --foreground: #1b1d23; /* 文字深灰 */
+  --primary: #c83e6b; /* 主要按鈕/互動色 */
+  --primary-foreground: #ffffff; /* 主要互動文字 */
+  --accent: #e1e1e1; /* hover / 次要互動背景 */
+  --accent-foreground: #c83e6b; /* hover / 次要文字 */
+  --border: #c8c8c8; /* 邊框 */
+  --input: #c8c8c8; /* 輸入框背景 */
+  --card: #f5f5f5; /* 卡片背景 */
+  --card-foreground: #1b1d23; /* 卡片文字 */
+  --popover: #f5f5f5; /* 彈出層背景 */
+  --popover-foreground: #1b1d23; /* 彈出層文字 */
+  --secondary: #e1e1e1; /* 次要按鈕/標籤背景 */
+  --secondary-foreground: #c83e6b; /* 次要文字 */
+  --muted: #e1e1e1; /* 靜態元素 / 禁用背景 */
+  --muted-foreground: #555555; /* 靜態文字 */
   --destructive: oklch(0.577 0.245 27.325); /* 危險操作按鈕 */
   --ring: #f0a6c0; /* Vfocus outline */
   --chart-1: oklch(0.646 0.222 41.116); /* 圖表色彩1 */
@@ -76,14 +76,14 @@
   --chart-3: oklch(0.398 0.07 227.392); /* 圖表色彩3 */
   --chart-4: oklch(0.828 0.189 84.429); /* 圖表色彩4 */
   --chart-5: oklch(0.769 0.188 70.08); /* 圖表色彩5 */
-  --sidebar: #ffffff; /* V側邊欄背景 */
-  --sidebar-foreground: #1b1d23; /* V */
-  --sidebar-primary: #c83e6b; /* V */
-  --sidebar-primary-foreground: #ffffff; /* V */
-  --sidebar-accent: #e1e1e1; /* V */
-  --sidebar-accent-foreground: #c83e6b; /* V */
-  --sidebar-border: #c8c8c8; /* V */
-  --sidebar-ring: #f0a6c0; /* V */
+  --sidebar: #ffffff; /* 側邊欄背景 */
+  --sidebar-foreground: #1b1d23;
+  --sidebar-primary: #c83e6b;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e1e1e1;
+  --sidebar-accent-foreground: #c83e6b;
+  --sidebar-border: #c8c8c8;
+  --sidebar-ring: #f0a6c0;
 }
 
 .dark {
@@ -92,37 +92,37 @@
   --button-dark-hover: #d94f7b;
   --primary-hover: #d94f7b;
   /* Dark Theme - 暗粉風格 */
-  --background: #15171c; /*V #1b1d23 */
-  --foreground: #f5f5f5; /* V */
-  --primary: #c83e6b; /* V */
-  --primary-foreground: #ffffff; /* V */
-  --accent: #282c33; /* V */
-  --accent-foreground: #f5f5f5; /* V */
-  --border: #43394f; /* V */
-  --input: #43394f; /* V */
-  --card: #20222b; /* V */
-  --card-foreground: #e0e0e0; /* V */
-  --popover: #262430; /*  */
-  --popover-foreground: #f5f5f5; /* V */
-  --secondary: #282c33; /* V */
-  --secondary-foreground: #f5f5f5; /* V */
-  --muted: #282c33; /* V */
-  --muted-foreground: #b0a6b8; /*  */
-  --destructive: oklch(0.704 0.191 22.216); /* V */
-  --ring: #f0a6c0; /* V */
+  --background: #15171c; /* #1b1d23 */
+  --foreground: #f5f5f5;
+  --primary: #c83e6b;
+  --primary-foreground: #ffffff;
+  --accent: #282c33;
+  --accent-foreground: #f5f5f5;
+  --border: #43394f;
+  --input: #43394f;
+  --card: #20222b;
+  --card-foreground: #e0e0e0;
+  --popover: #262430;
+  --popover-foreground: #f5f5f5;
+  --secondary: #282c33;
+  --secondary-foreground: #f5f5f5;
+  --muted: #282c33;
+  --muted-foreground: #b0a6b8;
+  --destructive: oklch(0.704 0.191 22.216);
+  --ring: #f0a6c0;
   --chart-1: oklch(0.488 0.243 264.376); /* 圖表色彩1 */
   --chart-2: oklch(0.696 0.17 162.48); /* 圖表色彩2 */
   --chart-3: oklch(0.769 0.188 70.08); /* 圖表色彩3 */
   --chart-4: oklch(0.627 0.265 303.9); /* 圖表色彩4 */
   --chart-5: oklch(0.645 0.246 16.439); /* 圖表色彩5 */
-  --sidebar: #1f1b22; /*  */
-  --sidebar-foreground: #f5f5f5; /*  */
-  --sidebar-primary: #c83e6b; /*  */
-  --sidebar-primary-foreground: #f5f5f5; /*  */
-  --sidebar-accent: #282c33; /*  */
-  --sidebar-accent-foreground: #f5f5f5; /*  */
-  --sidebar-border: #282c33; /*  */
-  --sidebar-ring: #f0a6c0; /*  */
+  --sidebar: #1f1b22;
+  --sidebar-foreground: #f5f5f5;
+  --sidebar-primary: #c83e6b;
+  --sidebar-primary-foreground: #f5f5f5;
+  --sidebar-accent: #282c33;
+  --sidebar-accent-foreground: #f5f5f5;
+  --sidebar-border: #282c33;
+  --sidebar-ring: #f0a6c0;
 }
 
 @layer base {

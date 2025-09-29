@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { promises as dns } from 'dns';
 import matter from 'gray-matter';
+import { PostData } from '@/types/post';
 
 /**
  * 抓取特定資料夾下的 .mdx 檔案，取出 FrontMatter（文章 metadata）和正文內容
@@ -55,79 +56,28 @@ function getMDXData(dir: string) {
  * @returns 取得所有部落格文章的 metadata 和 content
  */
 export function getBlogPosts() {
-  // path.join(process.cwd(), "src", "app", "blog", "contents")
-  // 組合成絕對路徑：專案根目錄/src/app/blog/contents
-  return getMDXData(path.join(process.cwd(), 'src', 'app', 'blog', 'contents'));
+  // path.join(process.cwd(), "contents")
+  // 組合成絕對路徑：專案根目錄/contents
+  return getMDXData(path.join(process.cwd(), 'contents')) as PostData[];
 }
 
 /**
  * TermsOfServices列表
  * @returns 取得所有TermsOfServices列表的 metadata 和 content
  */
-export function getTermsOfServices() {
-  return getMDXData(
-    path.join(process.cwd(), 'src', 'app', 'terms-of-services')
-  );
-}
+// export function getTermsOfServices() {
+//   return getMDXData(
+//     path.join(process.cwd(), 'src', 'app', 'terms-of-services')
+//   );
+// }
 
 /**
  * 取得隱私權政策內容
  * @returns
  */
-export function getPrivacyPolicy() {
-  return getMDXData(path.join(process.cwd(), 'src', 'app', 'privacy-policy'));
-}
-
-/* 
-  把日期字串變成「完整日期 + 相對時間」兩種格式
-  格式化日期，回傳 "2023年8月15日 (2d ago)" 或 "2023年8月15日"
-**/
-export function formatDate(date: string, includeRelative = false) {
-  // 輸入格式：YYYY-MM-DD 或 YYYY-MM-DDTHH:mm:ss
-  // 取得今天日期
-  const currentDate = new Date();
-  if (!date.includes('T')) {
-    // 如果沒有時間資訊，補上 00:00:00
-    date = `${date}T00:00:00`;
-  }
-
-  const targetDate = new Date(date);
-
-  const yearsAgo = currentDate.getFullYear() - targetDate.getFullYear();
-  const monthsAgo = currentDate.getMonth() - targetDate.getMonth();
-  const daysAgo = currentDate.getDate() - targetDate.getDate();
-
-  let formattedDate = '';
-
-  if (yearsAgo > 0) {
-    formattedDate = `${yearsAgo}y ago`;
-  } else if (monthsAgo > 0) {
-    formattedDate = `${monthsAgo}mo ago`;
-  } else if (daysAgo > 0) {
-    formattedDate = `${daysAgo}d ago`;
-  } else {
-    formattedDate = 'Today';
-  }
-  /**
-    超過一年 → xx y ago
-    超過一個月 → xx mo ago
-    超過一天 → xx d ago
-    同一天 → Today
-   */
-
-  // toLocaleString 用來格式化日期字串
-  const fullDate = targetDate.toLocaleString('en-us', {
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-  });
-
-  if (!includeRelative) {
-    return fullDate; // 以美式格式輸出完整日期 Month Day, Year 回傳完整日期 "2023年8月15日"
-  }
-
-  return `${fullDate} (${formattedDate})`; // 回傳完整日期 (相對時間) "2023年8月15日 (2d ago)"
-}
+// export function getPrivacyPolicy() {
+//   return getMDXData(path.join(process.cwd(), 'src', 'app', 'privacy-policy'));
+// }
 
 /**
  * 檢查 Email 的網域是否可用（避免假信箱）

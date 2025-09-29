@@ -14,6 +14,13 @@ export default function Header() {
 
   const safeTheme = mounted ? theme || 'light' : 'light';
 
+  const nevItems = [
+    { name: 'Home', href: '/' },
+    { name: 'Projects', href: '#' },
+    { name: 'Blog', href: '/blogs' },
+    { name: 'Contact', href: '#' },
+  ];
+
   return (
     <header
       className={cn(
@@ -39,21 +46,16 @@ export default function Header() {
       <nav className="flex items-center">
         {/* 桌面選單 */}
         <ul className="hidden md:flex gap-6">
-          <li>
-            <a className={cn(`hover:${safeTheme}-accentHover`)} href="#">
-              Home
-            </a>
-          </li>
-          <li>
-            <a className={cn(`hover:${safeTheme}-accentHover`)} href="#">
-              Projects
-            </a>
-          </li>
-          <li>
-            <a className={cn(`hover:${safeTheme}-accentHover`)} href="#">
-              Contact
-            </a>
-          </li>
+          {nevItems.map(item => (
+            <li key={item.name}>
+              <a
+                className={cn(`hover:text-accent-foreground`)}
+                href={item.href}
+              >
+                {item.name}
+              </a>
+            </li>
+          ))}
         </ul>
 
         {/* 漢堡按鈕 */}
@@ -89,41 +91,25 @@ export default function Header() {
         {isOpen && (
           <ul
             className={cn(
-              'absolute top-full right-0 mt-2 w-40 rounded shadow-md',
-              `bg-${safeTheme}-bg border border-${safeTheme}-line`,
-              'flex flex-col p-2 gap-2'
+              'flex flex-col md:hidden p-2 gap-2',
+              'absolute top-full right-0',
+              'mt-2 w-40 rounded shadow-md',
+              `bg-background border border-border`
             )}
           >
-            <li>
-              <a
-                className={cn(
-                  `block px-4 py-2 hover:bg-${safeTheme}-accentHover text-${safeTheme}-text`
-                )}
-                href="#"
-              >
-                Home
-              </a>
-            </li>
-            <li>
-              <a
-                className={cn(
-                  `block px-4 py-2 hover:bg-${safeTheme}-accentHover text-${safeTheme}-text`
-                )}
-                href="#"
-              >
-                Projects
-              </a>
-            </li>
-            <li>
-              <a
-                className={cn(
-                  `block px-4 py-2 hover:bg-${safeTheme}-accentHover text-${safeTheme}-text`
-                )}
-                href="#"
-              >
-                Contact
-              </a>
-            </li>
+            {nevItems.map(item => (
+              <li key={item.name}>
+                <a
+                  className={cn(
+                    `block px-4 py-2 hover:bg-accent text-${safeTheme}-text`
+                  )}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)} // 點擊後關閉選單
+                >
+                  {item.name}
+                </a>
+              </li>
+            ))}
           </ul>
         )}
         {/* 主題切換按鈕 */}
