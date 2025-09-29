@@ -41,95 +41,88 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --color-button-dark-hover: var(--button-dark-hover);
+  --color-button-dark: var(--button-dark);
+  --color-primary-hover: var(--primary-hover);
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-
-  /* === 品牌色 ==== */
-  --color-brand-bg-light: #f5f5f5;
-  --color-brand-card-light: #ffffff;
-  --color-brand-text-light: #1b1d23;
-  --color-brand-text-secondary-light: #555555;
-  --color-brand-accent-light: #c83e6b;
-  --color-brand-accent-hover-light: #d94f7b;
-  --color-brand-accent-active-light: #a8325c;
-  --color-brand-line-light: #e0e0e0;
+  /* Common */
+  --button-dark: #121212; /* 全黑 */
+  --button-dark-hover: #383838; /* 全黑 hover */
+  --primary-hover: #d94f7b; /* 主要按鈕 hover */
+  --radius: 0.625rem; /*  */
+  /* Light Theme - 暗粉風格 */
+  --background: #f5f5f5; /* V淺灰背景 */
+  --foreground: #1b1d23; /* V文字深灰 */
+  --primary: #c83e6b; /* V主要按鈕/互動色 */
+  --primary-foreground: #ffffff; /* V主要互動文字 */
+  --accent: #e1e1e1; /* Vhover / 次要互動背景 */
+  --accent-foreground: #c83e6b; /* Vhover / 次要文字 */
+  --border: #c8c8c8; /* V邊框 */
+  --input: #c8c8c8; /* V輸入框背景 */
+  --card: #f5f5f5; /* V卡片背景 */
+  --card-foreground: #1b1d23; /* V卡片文字 */
+  --popover: #f5f5f5; /* V彈出層背景 */
+  --popover-foreground: #1b1d23; /* V彈出層文字 */
+  --secondary: #e1e1e1; /* V次要按鈕/標籤背景 */
+  --secondary-foreground: #c83e6b; /* V次要文字 */
+  --muted: #e1e1e1; /* V靜態元素 / 禁用背景 */
+  --muted-foreground: #555555; /* V靜態文字 */
+  --destructive: oklch(0.577 0.245 27.325); /* 危險操作按鈕 */
+  --ring: #f0a6c0; /* Vfocus outline */
+  --chart-1: oklch(0.646 0.222 41.116); /* 圖表色彩1 */
+  --chart-2: oklch(0.6 0.118 184.704); /* 圖表色彩2 */
+  --chart-3: oklch(0.398 0.07 227.392); /* 圖表色彩3 */
+  --chart-4: oklch(0.828 0.189 84.429); /* 圖表色彩4 */
+  --chart-5: oklch(0.769 0.188 70.08); /* 圖表色彩5 */
+  --sidebar: #ffffff; /* V側邊欄背景 */
+  --sidebar-foreground: #1b1d23; /* V */
+  --sidebar-primary: #c83e6b; /* V */
+  --sidebar-primary-foreground: #ffffff; /* V */
+  --sidebar-accent: #e1e1e1; /* V */
+  --sidebar-accent-foreground: #c83e6b; /* V */
+  --sidebar-border: #c8c8c8; /* V */
+  --sidebar-ring: #f0a6c0; /* V */
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
-
-  /* === 品牌色 ==== */
-  --color-brand-bg-dark: #1b1d23;
-  --color-brand-card-dark: #15171d;
-  --color-brand-text-dark: #e0e0e0;
-  --color-brand-text-secondary-dark: #a0a0a0;
-  --color-brand-accent-dark: #c83e6b;
-  --color-brand-accent-hover-dark: #d94f7b;
-  --color-brand-accent-active-dark: #a8325c;
-  --color-brand-line-dark: #2c2f38;
+  /* Common */
+  --button-dark: #c83e6b;
+  --button-dark-hover: #d94f7b;
+  --primary-hover: #d94f7b;
+  /* Dark Theme - 暗粉風格 */
+  --background: #15171c; /*V #1b1d23 */
+  --foreground: #f5f5f5; /* V */
+  --primary: #c83e6b; /* V */
+  --primary-foreground: #ffffff; /* V */
+  --accent: #282c33; /* V */
+  --accent-foreground: #f5f5f5; /* V */
+  --border: #43394f; /* V */
+  --input: #43394f; /* V */
+  --card: #20222b; /* V */
+  --card-foreground: #e0e0e0; /* V */
+  --popover: #262430; /*  */
+  --popover-foreground: #f5f5f5; /* V */
+  --secondary: #282c33; /* V */
+  --secondary-foreground: #f5f5f5; /* V */
+  --muted: #282c33; /* V */
+  --muted-foreground: #b0a6b8; /*  */
+  --destructive: oklch(0.704 0.191 22.216); /* V */
+  --ring: #f0a6c0; /* V */
+  --chart-1: oklch(0.488 0.243 264.376); /* 圖表色彩1 */
+  --chart-2: oklch(0.696 0.17 162.48); /* 圖表色彩2 */
+  --chart-3: oklch(0.769 0.188 70.08); /* 圖表色彩3 */
+  --chart-4: oklch(0.627 0.265 303.9); /* 圖表色彩4 */
+  --chart-5: oklch(0.645 0.246 16.439); /* 圖表色彩5 */
+  --sidebar: #1f1b22; /*  */
+  --sidebar-foreground: #f5f5f5; /*  */
+  --sidebar-primary: #c83e6b; /*  */
+  --sidebar-primary-foreground: #f5f5f5; /*  */
+  --sidebar-accent: #282c33; /*  */
+  --sidebar-accent-foreground: #f5f5f5; /*  */
+  --sidebar-border: #282c33; /*  */
+  --sidebar-ring: #f0a6c0; /*  */
 }
 
 @layer base {

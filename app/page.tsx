@@ -1,9 +1,23 @@
 import Image from 'next/image';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 export default function Home() {
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+        <div className="mb-8 bg-card p-5 rounded-lg shadow-xs hover:shadow-sm border border-border hover:border-primary border-solid ease-in-out transition transform hover:-translate-y-1.5">
+          <h3 className="text-primary mb-2">專案 C</h3>
+          <p className="text-foreground">
+            紅粉主題色用於 Logo、按鈕、標題，統一整體視覺焦點。
+          </p>
+        </div>
+        <Button variant="outline">123</Button>
+        <Button className="bg-button-dark hover:bg-button-dark-hover transition">
+          Dark Button
+        </Button>
+        <Input placeholder="122" />
+
         <Image
           className="dark:invert"
           src="/next.svg"
@@ -41,13 +55,14 @@ export default function Home() {
             />
             Deploy now
           </a>
+
           <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
+            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Read our docs
+            Deploy now Dark
           </a>
         </div>
       </main>

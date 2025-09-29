@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import ThemeToggle from './theme-toggle';
-import { cn } from '@/lib/utils/cn';
+import { cn } from '@/lib/utils';
 
 export default function Header() {
   const { theme } = useTheme();
