@@ -1,17 +1,31 @@
-import React from 'react';
-import { getBlogPosts } from '@/lib/mdx';
-import BlogCard from '@/components/blog-card';
-import { sortByPublishedAtDesc } from '@/lib/utils';
+'use client';
 
-export default function LatestPosts() {
-  const posts = getBlogPosts();
-  console.log(posts);
+import React, { useState, useMemo } from 'react';
+import BlogCard from '@/components/blog-card';
+import Paginator from './paginator';
+import { PostData } from '@/types/post';
+
+export default function LatestPosts({ posts }: { posts: PostData[] }) {
+  // 每頁幾篇文章
+  const postsPerPage = 6;
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = Math.ceil(posts.length / postsPerPage);
+
+  // 根據目前頁數切資料
+  const currentPosts = useMemo(() => {
+    const start = (currentPage - 1) * postsPerPage;
+    return posts.slice(start, start + postsPerPage);
+  }, [posts, currentPage]);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // 換頁滑回頂部
+  };
+
   return (
-    <div className="container mx-auto px-4 grid gap-8 grid-cols-1 sm:grid-cols-3 lg:grid-cols-4">
-      {sortByPublishedAtDesc(posts).map(post => {
-        const { metadata } = post;
-        if (!metadata.isPublished) return null; // 如果文章未發布，則不顯示
-        return (
+    <div className="">
+      <div className="grid gap-8 grid-cols-1 sm:grid-cols-3 lg:grid-cols-4 ">
+        {currentPosts.map(post => (
           <BlogCard
             key={post.slug}
             cover={post.metadata.cover}
@@ -20,8 +34,13 @@ export default function LatestPosts() {
             desc={post.metadata.description}
             date={post.metadata.publishedAt}
           />
-        );
-      })}
+        ))}
+      </div>
+      <Paginator
+        totalPages={totalPages}
+        initialPage={currentPage}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 }

@@ -17,7 +17,7 @@ export default function Header() {
   const nevItems = [
     { name: 'Home', href: '/' },
     { name: 'Projects', href: '#' },
-    { name: 'Blog', href: '/blogs' },
+    { name: 'Blog', href: '/blog' },
     { name: 'Contact', href: '#' },
   ];
 
@@ -49,7 +49,7 @@ export default function Header() {
           {nevItems.map(item => (
             <li key={item.name}>
               <a
-                className={cn(`hover:text-accent-foreground`)}
+                className={cn('hover:text-accent-foreground')}
                 href={item.href}
               >
                 {item.name}
@@ -94,7 +94,7 @@ export default function Header() {
               'flex flex-col md:hidden p-2 gap-2',
               'absolute top-full right-0',
               'mt-2 w-40 rounded shadow-md',
-              `bg-background border border-border`
+              'bg-background border border-border'
             )}
           >
             {nevItems.map(item => (

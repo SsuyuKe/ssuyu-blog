@@ -28,6 +28,7 @@ coverage/
 package-lock.json
 yarn.lock
 pnpm-lock.yaml
+*.mdx
 
 # Next.js 特定文件
 .next/

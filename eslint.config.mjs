@@ -29,7 +29,7 @@ const eslintConfig = [
       'prettier/prettier': [
         'error',
         {
-          semi: false,
+          semi: true,
           singleQuote: true,
           trailingComma: 'es5',
           printWidth: 80,
