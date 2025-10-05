@@ -1,3 +1,7 @@
+export type ViewMode = 'grid' | 'list';
+
+export type SortOrder = 'desc' | 'asc';
+
 export type PostMeta = {
   title: string;
   description: string;

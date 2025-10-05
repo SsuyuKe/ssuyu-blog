@@ -6,8 +6,6 @@
   日期+時間 "2024-05-08T13:00:00"
 */
 export function formatDate(date: string, includeRelative = false) {
-  console.log('formatDate date:', date);
-
   // 輸入格式：YYYY-MM-DD 或 YYYY-MM-DDTHH:mm:ss
   // 取得今天日期
   const currentDate = new Date();

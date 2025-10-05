@@ -58,7 +58,7 @@
   --primary: #c83e6b; /* 主要按鈕/互動色 */
   --primary-foreground: #ffffff; /* 主要互動文字 */
   --accent: #e1e1e1; /* hover / 次要互動背景 */
-  --accent-foreground: #c83e6b; /* hover / 次要文字 */
+  --accent-foreground: var(--primary); /* hover / 次要文字 */
   --border: #c8c8c8; /* 邊框 */
   --input: #c8c8c8; /* 輸入框背景 */
   --card: #f5f5f5; /* 卡片背景 */
@@ -66,7 +66,7 @@
   --popover: #f5f5f5; /* 彈出層背景 */
   --popover-foreground: #1b1d23; /* 彈出層文字 */
   --secondary: #e1e1e1; /* 次要按鈕/標籤背景 */
-  --secondary-foreground: #c83e6b; /* 次要文字 */
+  --secondary-foreground: var(--primary); /* 次要文字 */
   --muted: #e1e1e1; /* 靜態元素 / 禁用背景 */
   --muted-foreground: #555555; /* 靜態文字 */
   --destructive: oklch(0.577 0.245 27.325); /* 危險操作按鈕 */
@@ -78,23 +78,30 @@
   --chart-5: oklch(0.769 0.188 70.08); /* 圖表色彩5 */
   --sidebar: #ffffff; /* 側邊欄背景 */
   --sidebar-foreground: #1b1d23;
-  --sidebar-primary: #c83e6b;
+  --sidebar-primary: var(--primary);
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #e1e1e1;
-  --sidebar-accent-foreground: #c83e6b;
+  --sidebar-accent-foreground: var(--primary);
   --sidebar-border: #c8c8c8;
   --sidebar-ring: #f0a6c0;
+
+  /* Code */
+  --sh-class: var(--primary); /* 類別 / class */
+  --sh-identifier: #3d3d4f; /* 變數名稱 / identifier */
+  --sh-sign: #b48fb8; /* 符號 / sign */
+  --sh-property: var(--primary-hover); /* 屬性名稱 / property */
+  --sh-entity: #2ca6a4; /* 內建對象 / entity */
+  --sh-jsxliterals: #6b5ed1; /* JSX 文字 / literals */
+  --sh-string: #00a99a; /* 字串 / string */
+  --sh-keyword: #f75f5f; /* 關鍵字 / keyword */
+  --sh-comment: #9e8f9b; /* 註解 / comment */
 }
 
 .dark {
-  /* Common */
-  --button-dark: #c83e6b;
-  --button-dark-hover: #d94f7b;
-  --primary-hover: #d94f7b;
   /* Dark Theme - 暗粉風格 */
   --background: #15171c; /* #1b1d23 */
   --foreground: #f5f5f5;
-  --primary: #c83e6b;
+  --primary: #ff5a8f;
   --primary-foreground: #ffffff;
   --accent: #282c33;
   --accent-foreground: #f5f5f5;
@@ -117,12 +124,38 @@
   --chart-5: oklch(0.645 0.246 16.439); /* 圖表色彩5 */
   --sidebar: #1f1b22;
   --sidebar-foreground: #f5f5f5;
-  --sidebar-primary: #c83e6b;
+  --sidebar-primary: var(--primary);
   --sidebar-primary-foreground: #f5f5f5;
   --sidebar-accent: #282c33;
   --sidebar-accent-foreground: #f5f5f5;
   --sidebar-border: #282c33;
   --sidebar-ring: #f0a6c0;
+
+  /* Common */
+  --primary-hover: #ff78a8;
+  --button-dark: var(--primary);
+  --button-dark-hover: var(--primary-hover);
+
+  /* Code */
+  --sh-class: #f58fc0; /* 類別 / class */
+  --sh-identifier: #c0c0d0; /* 變數名稱 / identifier */
+  --sh-sign: #b48fb8; /* 符號 / sign */
+  --sh-property: #ff6fa3; /* 屬性名稱 / property */
+  --sh-entity: #33d1c3; /* 內建對象 / entity */
+  --sh-jsxliterals: #a18fff; /* JSX 文字 / literals */
+  --sh-string: #00f0c8; /* 字串 / string */
+  --sh-keyword: #ff8a76; /* 關鍵字 / keyword */
+  --sh-comment: #9e8f9b; /* 註解 / comment */
+}
+
+::selection {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.dark ::selection {
+  background: var(--primary-hover);
+  color: var(--foreground);
 }
 
 @layer base {
@@ -131,5 +164,182 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    height: 6px; /* 滾動條高度 */
+  }
+  .scrollbar::-webkit-scrollbar-track {
+    background: transparent !important; /* 軌道透明 */
+  }
+  .scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(200, 62, 107, 0.6); /* 主題色半透明 */
+    border-radius: 3px;
+  }
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(200, 62, 107, 0.8);
+  }
+}
+
+@layer components {
+  article.prose {
+    @apply text-base leading-7 text-foreground;
+    max-width: 65ch;
+
+    /* ===== 標題樣式 ===== */
+    & h1 {
+      @apply text-4xl font-bold mt-10 mb-6 text-foreground leading-tight;
+      scroll-margin-top: 5rem;
+    }
+
+    & h2 {
+      @apply text-3xl font-bold mt-8 mb-4 text-foreground leading-snug;
+      scroll-margin-top: 5rem;
+    }
+
+    & h3 {
+      @apply text-2xl font-semibold mt-6 mb-3 text-foreground leading-snug;
+      scroll-margin-top: 5rem;
+    }
+
+    & h4 {
+      @apply text-xl font-semibold mt-5 mb-2 text-foreground;
+      scroll-margin-top: 5rem;
+    }
+
+    & h5 {
+      @apply text-lg font-semibold mt-4 mb-2 text-foreground;
+      scroll-margin-top: 5rem;
+    }
+
+    & h6 {
+      @apply text-base font-semibold mt-3 mb-2 text-foreground;
+      scroll-margin-top: 5rem;
+    }
+
+    /* ===== 段落 ===== */
+    & p {
+      @apply mb-5 leading-7 text-foreground;
+    }
+
+    & strong {
+      @apply font-bold text-foreground;
+    }
+
+    & em {
+      @apply italic;
+    }
+
+    /* ===== 連結 - 使用你的主題色 #c83e6b ===== */
+    & a {
+      @apply text-primary font-medium no-underline;
+      @apply hover:text-primary-hover hover:underline hover:underline-offset-4;
+      @apply transition-colors duration-200;
+    }
+
+    /* ===== 列表 ===== */
+    & ul {
+      @apply list-disc ml-6 mb-5 space-y-2;
+    }
+
+    & ol {
+      @apply list-decimal ml-6 mb-5 space-y-2;
+    }
+
+    & li {
+      @apply leading-7 text-foreground;
+
+      & > ul,
+      & > ol {
+        @apply mt-2 mb-0;
+      }
+    }
+
+    & li::marker {
+      @apply text-muted-foreground;
+    }
+
+    /* ===== Inline Code ===== */
+    & code {
+      @apply text-[0.875em] font-mono;
+      @apply bg-accent;
+      @apply px-1.5 py-0.5 rounded;
+      @apply border border-border;
+    }
+
+    /* ===== Code Block ===== */
+    & pre {
+      @apply bg-card p-4 rounded-lg overflow-x-auto mb-6;
+      @apply border border-border;
+
+      & code {
+        @apply bg-transparent border-0 p-0 text-sm;
+      }
+    }
+
+    /* ===== 引用區塊 - 使用你的主題色 ===== */
+    & blockquote {
+      @apply border-l-4 border-primary/40 pl-6 pr-4 py-3 my-6;
+      @apply text-foreground/80;
+      @apply !bg-accent/30 rounded-md;
+
+      & p {
+        @apply mb-0;
+      }
+
+      & p:not(:last-child) {
+        @apply mb-4;
+      }
+    }
+
+    /* ===== 圖片 ===== */
+    & img {
+      @apply rounded-lg my-8 w-full;
+      @apply border border-border;
+    }
+
+    /* ===== 水平線 ===== */
+    & hr {
+      @apply my-10 border-0 border-t border-border;
+    }
+
+    /* ===== 表格 ===== */
+    /* 在custom-mdx */
+    tbody tr:hover {
+      @apply bg-accent transition-colors;
+    }
+    tbody td {
+      @apply border-b border-border;
+    }
+    tbody tr:last-child td {
+      @apply border-none;
+    }
+
+    /* ===== 其他元素 ===== */
+    & kbd {
+      @apply px-2 py-1 text-sm font-mono;
+      @apply bg-muted border border-border rounded;
+      @apply shadow-sm;
+    }
+
+    & mark {
+      @apply bg-primary/20 text-foreground px-1 rounded;
+    }
+
+    & del {
+      @apply line-through text-muted-foreground;
+    }
+
+    /* 移除第一個元素的上邊距 */
+    & > :first-child {
+      @apply mt-0;
+    }
+
+    /* 移除最後一個元素的下邊距 */
+    & > :last-child {
+      @apply mb-0;
+    }
   }
 }

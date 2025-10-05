@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import '@/assets/css/globals.css';
 import { ThemeProvider } from '../lib/providers/theme-provider';
 import Header from '@/components/header';
+import Footer from '@/components/footer';
 
 export const metadata: Metadata = {
   title: 'SsuyuKe',
@@ -19,6 +20,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Header />
           {children}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
