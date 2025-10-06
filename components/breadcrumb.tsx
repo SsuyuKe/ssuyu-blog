@@ -18,7 +18,9 @@ export default function CustomBreadcrumb({
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
-          <BreadcrumbLink href="/blog">部落格</BreadcrumbLink>
+          <BreadcrumbLink href="/blog" className="hover:underline">
+            部落格
+          </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
