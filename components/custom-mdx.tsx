@@ -52,7 +52,7 @@ function RoundedImage({ alt, ...rest }: PropsWithChildren<ImageProps>) {
   return <Image alt={alt} className="rounded-lg" {...rest} />;
 }
 
-function slugify(str: string) {
+export function slugify(str: string) {
   return str
     .toString() // 確保輸入是字串，不是數字或其他型別
     .trim() // 去掉頭尾多餘空格
@@ -76,19 +76,16 @@ function createHeading(level: number) {
 
     return React.createElement(
       `h${level}`,
-      { id: slug, className: 'group scroll-mt-20' },
+      /* 滾動向上的 offset */
+      { id: slug, className: 'group scroll-mt-28' },
       [
-        React.createElement(
-          'a',
-          {
-            href: `#${slug}`,
-            key: `link-${slug}`,
-            className:
-              'mr-2 opacity-0 group-hover:opacity-100 transition-opacity text-primary no-underline inline-block',
-            'aria-label': 'Link to this section',
-          },
-          '🔗'
-        ),
+        React.createElement('a', {
+          href: `#${slug}`,
+          key: `link-${slug}`,
+          className:
+            'mr-2 opacity-0 group-hover:opacity-100 transition-opacity text-primary no-underline inline-block',
+          'aria-label': 'Link to this section',
+        }),
         children,
       ]
     );
