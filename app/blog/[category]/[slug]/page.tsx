@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import Container from '@/components/container';
+import PageContainer from '@/components/page-container';
 import { formatDate } from '@/lib/time';
 import { Card, CardHeader, CardContent } from '@/components/ui/card';
 import Breadcrumb from '@/components/breadcrumb';
@@ -18,17 +18,18 @@ const relatedPosts = [
 export default async function Page({
   params,
 }: {
-  params: { category: string; slug: string };
+  params: Promise<{ category: string; slug: string }>;
 }) {
-  const post = getBlogPosts().find(post => post.slug === params.slug);
+  const { slug } = await params;
+  const post = getBlogPosts().find(post => post.slug === slug);
   if (!post) notFound();
 
   const toc = extractTocFromMdx(post.content);
 
   return (
-    <Container>
+    <PageContainer>
       {/* --- 主內容 + 側欄 --- */}
-      <div className="flex flex-col-reverse lg:flex-row gap-10">
+      <div className="flex flex-col-reverse justify-center lg:flex-row gap-12 pt-10">
         {/* 主內文 */}
         <div className="flex-1">
           <Breadcrumb
@@ -70,14 +71,14 @@ export default async function Page({
           </Card>
         </div>
         {/* 側欄 */}
-        <aside className="w-full lg:w-80 flex-shrink-0 space-y-6 lg:sticky lg:top-20 self-start">
+        <aside className="w-full lg:max-w-60 flex-shrink-0 space-y-6 lg:sticky lg:top-20 self-start">
           {/* 目錄 */}
-          <div className="border border-border bg-card shadow rounded-md p-7 md:pt-3 md:px-0 md:pb-0 md:border-none md:shadow-none">
-            <h3 className="font-semibold mb-2">目錄</h3>
+          <div className="p-7 md:pt-3 md:px-0 md:pb-0">
+            <h3 className="font-semibold mb-3">目錄</h3>
             <TableOfContents toc={toc} />
           </div>
         </aside>
       </div>
-    </Container>
+    </PageContainer>
   );
 }

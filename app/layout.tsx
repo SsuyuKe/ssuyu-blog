@@ -3,6 +3,8 @@ import '@/assets/css/globals.css';
 import { ThemeProvider } from '../lib/providers/theme-provider';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
+import ScrollProgerssBar from '@/components/scroll-progerss-bar';
+import TopLoader from '@/components/top-loader';
 
 export const metadata: Metadata = {
   title: 'SsuyuKe',
@@ -18,10 +20,14 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Header />
-          {children}
-          <Footer />
+          <div className="flex flex-col min-h-screen">
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
         </ThemeProvider>
+        <TopLoader />
+        <ScrollProgerssBar />
       </body>
     </html>
   );

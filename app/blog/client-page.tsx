@@ -7,14 +7,15 @@ import { PostData } from '@/types/post';
 import EmptyPosts from '@/components/empty-posts';
 import BlogToolbar from '@/components/blog-toolbar';
 import BlogList from '@/components/blog-list';
+// import ViewModeSwitcher from '@/components/view-mode-switcher';
 
 export default function BlogClientPage({ posts }: { posts: PostData[] }) {
-  const postsPerPage = 3;
+  const postsPerPage = 6;
   const [currentPage, setCurrentPage] = useState(1);
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  // const [viewMode, setViewMode] = useState<'grid' | 'list'>('list');
   const [sortOrder, setSortOrder] = useState<'desc' | 'asc'>('desc');
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('全部');
+  const [selectedCategory, setSelectedCategory] = useState('所有文章');
 
   // 先排序文章
   const sortedPosts = useMemo(() => {
@@ -29,7 +30,7 @@ export default function BlogClientPage({ posts }: { posts: PostData[] }) {
   const filteredPosts = useMemo(() => {
     let filtered = sortedPosts;
 
-    if (selectedCategory !== '全部') {
+    if (selectedCategory !== '所有文章') {
       filtered = filtered.filter(
         post => post.metadata.category === selectedCategory
       );
@@ -58,28 +59,18 @@ export default function BlogClientPage({ posts }: { posts: PostData[] }) {
   };
 
   return (
-    <div className="flex flex-col md:flex-row gap-6">
-      <aside className="w-full md:w-72 md:flex-shrink-0">
-        <BlogSidebar
-          onCategoryChange={category => {
-            setSelectedCategory(category);
-            setCurrentPage(1);
-          }}
-        />
-      </aside>
-      <main className="flex-1">
-        <BlogToolbar
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-          sortOrder={sortOrder}
-          setSortOrder={setSortOrder}
-          viewMode={viewMode}
-          setViewMode={setViewMode}
-        />
+    <div className="flex flex-col md:flex-row gap-12 pt-10">
+      <div className="flex-1">
+        <div className="flex items-end justify-between mb-5">
+          <h2 className="font-semibold flex-1 text-2xl">
+            📌 分類: <span className="text-foreground">{selectedCategory}</span>
+          </h2>
+          {/* <ViewModeSwitcher viewMode={viewMode} setViewMode={setViewMode} /> */}
+        </div>
         {filteredPosts.length === 0 ? (
           <EmptyPosts />
         ) : (
-          <BlogList posts={currentPosts} viewMode={viewMode} />
+          <BlogList posts={currentPosts} viewMode="list" />
         )}
         {filteredPosts.length > 0 && (
           <Paginator
@@ -88,7 +79,22 @@ export default function BlogClientPage({ posts }: { posts: PostData[] }) {
             onPageChange={handlePageChange}
           />
         )}
-      </main>
+      </div>
+      <aside className="w-full md:w-72 md:flex-shrink-0">
+        <BlogToolbar
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+          sortOrder={sortOrder}
+          setSortOrder={setSortOrder}
+          className="mb-5"
+        />
+        <BlogSidebar
+          onCategoryChange={category => {
+            setSelectedCategory(category);
+            setCurrentPage(1);
+          }}
+        />
+      </aside>
     </div>
   );
 }

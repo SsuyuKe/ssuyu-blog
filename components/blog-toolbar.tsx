@@ -2,22 +2,22 @@
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { List, Grid, Filter, Search, ChevronDown, Check } from 'lucide-react';
+import { Filter, Search, ChevronDown, Check } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { ViewMode, SortOrder } from '@/types/post';
+import { SortOrder } from '@/types/post';
+import { cn } from '@/lib/utils';
 
 interface BlogToolbarProps {
   searchQuery: string;
   setSearchQuery: (value: string) => void;
   sortOrder: SortOrder;
   setSortOrder: (value: SortOrder) => void;
-  viewMode: ViewMode;
-  setViewMode: (value: ViewMode) => void;
+  className?: string;
 }
 
 // 搜尋框 + 篩選排序 + 切換顯示模式
@@ -26,8 +26,7 @@ export default function BlogToolbar({
   setSearchQuery,
   sortOrder,
   setSortOrder,
-  viewMode,
-  setViewMode,
+  className,
 }: BlogToolbarProps) {
   const sortOptions = [
     { label: '由新到舊', value: 'desc' },
@@ -35,26 +34,36 @@ export default function BlogToolbar({
   ] as const;
 
   return (
-    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
-      <div className="flex items-center gap-2 w-full sm:w-auto">
-        <div className="relative flex-grow sm:w-80 md:w-96">
+    <div
+      className={cn(
+        'flex flex-col items-center justify-between gap-3',
+        className
+      )}
+    >
+      <div className="flex items-center gap-2 w-full">
+        <div className="relative flex-grow">
           <Input
             placeholder="搜尋文章..."
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
-            className="pr-10"
+            className="focus-visible:ring-0 focus-visible:border-border pr-10 border-t-0 border-x-0 border-b border-border rounded-none shadow-none"
           />
           <Search
             className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground"
             size={18}
           />
         </div>
-
         <DropdownMenu modal={false}>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="flex items-center gap-1">
+            <Button
+              variant="outline"
+              className={cn(
+                'flex items-center gap-1',
+                'border-none shadow-none bg-none text-muted-foreground hover:text-muted-foreground'
+              )}
+            >
               <Filter size={18} />
-              <ChevronDown size={14} className="text-muted-foreground" />
+              <ChevronDown size={14} />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
@@ -77,23 +86,6 @@ export default function BlogToolbar({
             ))}
           </DropdownMenuContent>
         </DropdownMenu>
-      </div>
-
-      <div className="flex items-center justify-end gap-2">
-        <Button
-          size="icon"
-          variant={viewMode === 'grid' ? 'default' : 'outline'}
-          onClick={() => setViewMode('grid')}
-        >
-          <Grid size={18} />
-        </Button>
-        <Button
-          size="icon"
-          variant={viewMode === 'list' ? 'default' : 'outline'}
-          onClick={() => setViewMode('list')}
-        >
-          <List size={18} />
-        </Button>
       </div>
     </div>
   );

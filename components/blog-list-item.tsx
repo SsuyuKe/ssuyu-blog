@@ -16,45 +16,43 @@ export default function BlogListItem({
   return (
     <Link
       href={`/blog/${post.category}/${slug}`}
-      className="border-b border-border/40 hover:bg-muted/30 transition-all px-5"
+      className="transition-all md:px-5 border-b last:border-0 border-border/40 hover:bg-muted/30"
     >
       <article className="group flex flex-col md:flex-row gap-6 py-8 last:border-0 transition-colors">
         {/* 封面圖 */}
         {post.cover && (
-          <div className="relative w-full md:w-1/3 aspect-video overflow-hidden rounded-md bg-muted/20">
+          <div className="relative w-full md:w-1/3 flex-shrink-0 aspect-video overflow-hidden bg-muted/20">
             <Image
               src={post.cover}
               alt={post.title}
               fill
-              sizes="(max-width: 768px) 100vw, 33vw"
               className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
           </div>
         )}
 
         {/* 右側文字內容 */}
-        <div className="flex-1 flex flex-col justify-between">
+        <div className="flex-1 flex flex-col justify-between gap-3">
           {/* 類別與日期 */}
-          <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground mb-2">
-            <span className="text-primary font-medium">{post.category}</span>
+          {/* TODO: 改成動態分類和標籤 */}
+          <div className="flex flex-wrap items-center gap-2 text-sm text-primary font-medium">
+            <span>{post.category}</span>
             <span>•</span>
-            <span>思宇 Ssuyu</span>
-            <span>•</span>
-            <span>{formatDate(post.publishedAt)}</span>
+            <span>React</span>
           </div>
 
           {/* 標題 */}
-          <h2 className="text-2xl font-semibold mb-2 leading-tight">
-            <Link
-              href={`/blog/${post.category}/${slug}`}
-              className="hover:text-primary transition-colors duration-200"
-            >
-              {post.title}
-            </Link>
+          <h2 className="text-xl font-semibold leading-tight hover:text-primary transition-colors duration-200">
+            {post.title}
           </h2>
 
+          {/* 時間 */}
+          <p className="text-muted-foreground text-sm">
+            {formatDate(post.publishedAt)}
+          </p>
+
           {/* 內文摘要 */}
-          <p className="text-muted-foreground text-base line-clamp-3 mb-4">
+          <p className="text-muted-foreground text-base line-clamp-3">
             {post.description}
           </p>
 
