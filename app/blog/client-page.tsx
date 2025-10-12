@@ -63,7 +63,7 @@ export default function BlogClientPage({ posts }: { posts: PostData[] }) {
       <div className="flex-1">
         <div className="flex items-end justify-between mb-5">
           <h2 className="font-semibold flex-1 text-2xl">
-            📌 分類: <span className="text-foreground">{selectedCategory}</span>
+            CATEGORY： <span className="text-primary">{selectedCategory}</span>
           </h2>
           {/* <ViewModeSwitcher viewMode={viewMode} setViewMode={setViewMode} /> */}
         </div>

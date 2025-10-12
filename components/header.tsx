@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useTheme } from 'next-themes';
 import ThemeToggle from './theme-toggle';
 import { cn } from '@/lib/utils';
 import Container from './container';
@@ -28,9 +27,28 @@ export default function Header() {
       )}
     >
       <Container>
+        <div className="absolute right-0 top-[61px] flex flex-col items-center gap-3">
+          <div className="w-[1px] h-30 bg-border"></div>
+          <Link
+            href="https://github.com/SsuyuKe"
+            target="_blank"
+            className="flex justify-center items-center"
+          >
+            <i className="fa-brands fa-github text-border text-3xl hover:scale-110 transition-transform"></i>
+          </Link>
+          <Link
+            href="https://www.instagram.com/ssuyuke/"
+            target="_blank"
+            className="flex justify-center items-center"
+          >
+            <i className="fa-brands fa-square-instagram text-border text-3xl hover:scale-110 transition-transform"></i>
+          </Link>
+        </div>
         <div className={cn('h-[60px]', 'flex justify-between items-center')}>
           {/* Logo */}
-          <div className={cn('text-sm font-medium')}>Ssuyu</div>
+          <Link href="/" className={cn('text-sm font-bold')}>
+            SSUYUKE
+          </Link>
           {/* 菜單 & 漢堡 */}
           <nav className="flex items-center">
             {/* 桌面選單 */}
