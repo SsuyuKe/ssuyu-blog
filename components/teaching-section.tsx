@@ -61,7 +61,7 @@ export default function TeachingSection() {
           {/* 標題 */}
           <div className="flex items-center">
             <div className="w-1/2 flex justify-center lg:justify-start mb-24">
-              <h2 className="relative text-sm md:text-base lg:text-lg font-semibold tracking-wide cursor-default group">
+              <h2 className="relative text-sm md:text-base lg:text-lg font-semibold tracking-widest cursor-default group">
                 [ TEACHING EXPERIENCE ]
                 <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
               </h2>

@@ -14,7 +14,6 @@ export default function Header() {
 
   const nevItems = [
     { name: '首頁', href: '/' },
-    { name: '作品集', href: '#' },
     { name: '部落格', href: '/blog' },
     { name: '轉職前端', href: '#' },
     { name: '外包/合作', href: '#' },
