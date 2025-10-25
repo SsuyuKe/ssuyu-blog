@@ -5,29 +5,33 @@ import ThemeToggle from './theme-toggle';
 import { cn } from '@/lib/utils';
 import Container from './container';
 import Link from 'next/link';
+import { Button } from './ui/button';
+import { useRouter } from 'next/navigation';
 
 export default function Header() {
   const [, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
 
   useEffect(() => setMounted(true), []);
 
   const nevItems = [
     { name: '首頁', href: '/' },
+    { name: '關於我', href: '/#about' },
+    { name: '服務項目', href: '/#services' },
     { name: '部落格', href: '/blog' },
-    { name: '轉職前端', href: '#' },
-    { name: '外包/合作', href: '#' },
+    { name: '聯繫我', href: '/#contact' },
   ];
 
   return (
     <header
       className={cn(
-        'fixed top-0 left-0 w-full z-50',
+        'fixed top-0 left-0 right-0 z-50',
         'bg-opacity-70 backdrop-blur-md border-border border-b'
       )}
     >
-      <Container>
-        <div className="absolute right-0 top-[61px] flex flex-col items-center gap-3">
+      <Container className="relative">
+        <div className="absolute right-0 top-[61px] hidden md:flex flex-col items-center gap-3">
           <div className="w-[1px] h-30 bg-border"></div>
           <Link
             href="https://github.com/SsuyuKe"
@@ -47,17 +51,18 @@ export default function Header() {
         <div className={cn('h-[60px]', 'flex justify-between items-center')}>
           {/* Logo */}
           <Link href="/" className={cn('text-sm font-bold')}>
-            SSUYUKE
+            <h1>SSUYUKE</h1>
           </Link>
           {/* 菜單 & 漢堡 */}
-          <nav className="flex items-center">
+          <nav className="flex items-center relative">
             {/* 桌面選單 */}
             <ul className="hidden md:flex gap-6 items-center">
               {nevItems.map(item => (
                 <li key={item.name}>
                   <a
                     className={cn(
-                      'hover:text-accent-foreground text-sm font-medium'
+                      'text-sm font-medium',
+                      'hover:text-accent-foreground transition-colors duration-300'
                     )}
                     href={item.href}
                   >
@@ -65,6 +70,15 @@ export default function Header() {
                   </a>
                 </li>
               ))}
+              <li className="flex justify-center items-center">
+                {/* 主題切換按鈕 */}
+                <Button
+                  onClick={() => router.push('/#contact')}
+                  className="uppercase"
+                >
+                  Hire Me
+                </Button>
+              </li>
               <li className="flex justify-center items-center">
                 {/* 主題切換按鈕 */}
                 <ThemeToggle />
