@@ -24,16 +24,29 @@ const backendSkills = [
   'GraphQL',
 ];
 
-const container = {
+// 父容器動畫，控制子元素 stagger
+const containerVariants = {
   hidden: {},
   show: {
-    transition: { staggerChildren: 0.15 },
+    transition: {
+      staggerChildren: 0.15,
+    },
   },
 };
 
-const item = {
-  hidden: { opacity: 0, y: -10 },
-  show: { opacity: 1, y: 0 },
+// 單個技能動畫
+const itemVariants = {
+  hidden: { opacity: 0, y: 10 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: 'spring' as const,
+      stiffness: 100,
+      damping: 12,
+      duration: 0.25,
+    },
+  },
 };
 
 export default function SkillsSection({ className }: { className?: string }) {
@@ -60,17 +73,17 @@ export default function SkillsSection({ className }: { className?: string }) {
               FRONTEND DEVELOPMENT
             </h3>
             <motion.div
-              variants={container}
+              variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ amount: 0.8 }}
+              viewport={{ once: false, amount: 0.2 }}
               className="flex flex-wrap justify-center lg:justify-start gap-4"
             >
               {frontendSkills.map(skill => (
                 <motion.span
                   key={skill}
-                  variants={item}
-                  className="px-4 py-2 rounded-lg bg-muted-foreground/10 text-sm md:text-base font-light transition-all duration-300 hover:bg-primary hover:text-white"
+                  variants={itemVariants}
+                  className="px-4 py-2 rounded-lg bg-muted-foreground/10 text-sm md:text-base font-light hover:bg-primary hover:text-white"
                 >
                   {skill}
                 </motion.span>
@@ -84,17 +97,17 @@ export default function SkillsSection({ className }: { className?: string }) {
               BACKEND DEVELOPMENT
             </h3>
             <motion.div
-              variants={container}
+              variants={containerVariants}
               initial="hidden"
               whileInView="show"
-              viewport={{ amount: 0.8 }}
+              viewport={{ once: false, amount: 0.2 }}
               className="flex flex-wrap justify-center lg:justify-start gap-4"
             >
               {backendSkills.map(skill => (
                 <motion.span
                   key={skill}
-                  variants={item}
-                  className="px-4 py-2 rounded-lg bg-muted-foreground/10 text-sm md:text-base font-light transition-all duration-300 hover:bg-primary hover:text-white"
+                  variants={itemVariants}
+                  className="px-4 py-2 rounded-lg bg-muted-foreground/10 text-sm md:text-base font-light hover:bg-primary hover:text-white"
                 >
                   {skill}
                 </motion.span>

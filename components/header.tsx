@@ -7,6 +7,7 @@ import Container from './container';
 import Link from 'next/link';
 import { Button } from './ui/button';
 import { useRouter } from 'next/navigation';
+import Menu from './menu';
 
 export default function Header() {
   const [, setMounted] = useState(false);
@@ -15,7 +16,12 @@ export default function Header() {
 
   useEffect(() => setMounted(true), []);
 
-  const nevItems = [
+  // 開關選單時鎖定背景卷軸
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  }, [isOpen]);
+
+  const navItems = [
     { name: '首頁', href: '/' },
     { name: '關於我', href: '/#about' },
     { name: '服務項目', href: '/#services' },
@@ -26,11 +32,12 @@ export default function Header() {
   return (
     <header
       className={cn(
-        'fixed top-0 left-0 right-0 z-50',
-        'bg-opacity-70 backdrop-blur-md border-border border-b'
+        'fixed top-0 w-full z-50',
+        isOpen ? 'bg-background' : 'backdrop-blur-md border-border border-b'
       )}
     >
       <Container className="relative">
+        {/* 側邊社群 */}
         <div className="absolute right-0 top-[61px] hidden md:flex flex-col items-center gap-3">
           <div className="w-[1px] h-30 bg-border"></div>
           <Link
@@ -48,30 +55,32 @@ export default function Header() {
             <i className="fa-brands fa-square-instagram text-border text-3xl hover:scale-110 transition-transform"></i>
           </Link>
         </div>
-        <div className={cn('h-[60px]', 'flex justify-between items-center')}>
+
+        {/* Header 內容 */}
+        <div className="h-[60px] flex justify-between items-center">
           {/* Logo */}
-          <Link href="/" className={cn('text-sm font-bold')}>
+          <Link href="/" className="text-sm font-bold">
             <h1>SSUYUKE</h1>
           </Link>
-          {/* 菜單 & 漢堡 */}
-          <nav className="flex items-center relative">
-            {/* 桌面選單 */}
+
+          {/* 菜單區 */}
+          <nav className="flex items-center">
+            {/* 桌面版 */}
             <ul className="hidden md:flex gap-6 items-center">
-              {nevItems.map(item => (
+              {navItems.map(item => (
                 <li key={item.name}>
                   <a
+                    href={item.href}
                     className={cn(
                       'text-sm font-medium',
                       'hover:text-accent-foreground transition-colors duration-300'
                     )}
-                    href={item.href}
                   >
                     {item.name}
                   </a>
                 </li>
               ))}
-              <li className="flex justify-center items-center">
-                {/* 主題切換按鈕 */}
+              <li>
                 <Button
                   onClick={() => router.push('/#contact')}
                   className="uppercase"
@@ -79,67 +88,40 @@ export default function Header() {
                   Hire Me
                 </Button>
               </li>
-              <li className="flex justify-center items-center">
-                {/* 主題切換按鈕 */}
+              <li>
                 <ThemeToggle />
               </li>
             </ul>
 
             {/* 漢堡按鈕 */}
             <button
-              className="md:hidden ml-4 p-2 rounded focus:outline-none"
+              className="md:hidden relative z-50 w-6 h-6 flex items-center justify-center focus:outline-0"
               onClick={() => setIsOpen(!isOpen)}
             >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                {isOpen ? (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                ) : (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                )}
-              </svg>
-            </button>
-
-            {/* 手機下拉選單 */}
-            {isOpen && (
-              <ul
+              <div
                 className={cn(
-                  'flex flex-col md:hidden p-2 gap-2',
-                  'absolute top-full right-0',
-                  'mt-2 w-40 rounded shadow-md',
-                  'bg-background border border-border'
+                  'relative w-full h-[2px] bg-foreground transition-all duration-400 ease-in-out',
+                  isOpen && 'rotate-[135deg]'
                 )}
               >
-                {nevItems.map(item => (
-                  <li key={item.name}>
-                    <Link
-                      className="px-4 py-2 hover:bg-accent"
-                      href={item.href}
-                      onClick={() => setIsOpen(false)} // 點擊後關閉選單
-                    >
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            )}
+                <span
+                  className={cn(
+                    'absolute left-0 top-[-0.5rem] w-full h-[2px] bg-foreground transition-all duration-400 ease-in-out',
+                    isOpen && 'rotate-90 top-0'
+                  )}
+                ></span>
+                <span
+                  className={cn(
+                    'absolute left-0 top-[0.5rem] w-full h-[2px] bg-foreground transition-all duration-400 ease-in-out',
+                    isOpen && 'rotate-90 top-0 opacity-0'
+                  )}
+                ></span>
+              </div>
+            </button>
           </nav>
         </div>
       </Container>
+      <Menu isOpen={isOpen} setIsOpen={setIsOpen} />
     </header>
   );
 }

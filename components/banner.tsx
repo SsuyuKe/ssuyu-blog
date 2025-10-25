@@ -14,7 +14,7 @@ export default function Banner({
   return (
     <section className="w-full h-screen sticky top-0 z-20 overflow-hidden">
       <motion.div
-        className="absolute inset-0 bg-muted-foreground z-10"
+        className="absolute inset-0 bg-muted-foreground z-10 pointer-events-none"
         style={{ opacity: overlayOpacity }}
       />
       <motion.div style={{ scale }}>

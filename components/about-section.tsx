@@ -3,8 +3,10 @@ import Container from './container';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import { useRouter } from 'next/navigation';
 
 export default function AboutSection({ className }: { className?: string }) {
+  const router = useRouter();
   return (
     <section id="about" className={cn('py-20 overflow-hidden', className)}>
       <Container>
@@ -16,6 +18,7 @@ export default function AboutSection({ className }: { className?: string }) {
               delay: 0.5,
               duration: 0.5,
             }}
+            playsInline
             autoPlay
             loop
             muted
@@ -118,24 +121,30 @@ export default function AboutSection({ className }: { className?: string }) {
               <div className="flex gap-4 text-muted-foreground text-lg">
                 <Link
                   href="https://www.instagram.com/ssuyuke/"
+                  target="_blank"
                   className="hover:text-primary transition cursor-pointer"
                 >
                   <i className="fa-brands fa-instagram"></i>
                 </Link>
                 <Link
                   href="#"
+                  target="_blank"
                   className="hover:text-primary transition cursor-pointer"
                 >
                   <i className="fa-brands fa-linkedin"></i>
                 </Link>
                 <Link
                   href="https://github.com/SsuyuKe"
+                  target="_blank"
                   className="hover:text-primary transition cursor-pointer"
                 >
                   <i className="fa-brands fa-github"></i>
                 </Link>
               </div>
-              <button className="ml-auto text-sm font-medium hover:text-primary transition-all duration-300 cursor-pointer">
+              <button
+                onClick={() => router.push('/#contact')}
+                className="ml-auto text-sm font-medium hover:text-primary transition-all duration-300 cursor-pointer"
+              >
                 CONTACT →
               </button>
             </div>

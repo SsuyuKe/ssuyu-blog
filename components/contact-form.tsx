@@ -21,6 +21,7 @@ export default function ContactForm({ className }: { className?: string }) {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
@@ -86,18 +87,14 @@ export default function ContactForm({ className }: { className?: string }) {
                 <button
                   type="button"
                   className="px-3 py-1 rounded-md border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition"
-                  onClick={() => {
-                    setSubjectValue('網頁開發外包');
-                  }}
+                  onClick={() => setValue('subject', '網頁開發外包')}
                 >
                   網頁開發外包
                 </button>
                 <button
                   type="button"
                   className="px-3 py-1 rounded-md border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition"
-                  onClick={() => {
-                    setSubjectValue('前端技能諮詢');
-                  }}
+                  onClick={() => setValue('subject', '前端技能諮詢')}
                 >
                   前端技能諮詢
                 </button>
@@ -148,6 +145,7 @@ export default function ContactForm({ className }: { className?: string }) {
               delay: 0.3,
               duration: 0.5,
             }}
+            playsInline
             autoPlay
             loop
             muted

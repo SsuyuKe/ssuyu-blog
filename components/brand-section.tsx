@@ -3,7 +3,7 @@ import React from 'react';
 import Container from './container';
 import { motion } from 'framer-motion';
 
-export default function ContactSection({ className }: { className?: string }) {
+export default function BrandSection({ className }: { className?: string }) {
   return (
     <section className={className}>
       <Container>

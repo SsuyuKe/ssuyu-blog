@@ -4,30 +4,50 @@ import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.2, // 每個子元素依序出現
+    },
+  },
+};
+
+// 單個 ServiceCard 動畫
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: 'spring' as const,
+      stiffness: 100,
+      damping: 12,
+      duration: 0.3,
+    },
+  },
+};
+
 function ServiceCard({
   icon,
   title,
   btnLink,
   btnText,
-  delay = 0.3,
   children,
+  newPage = false,
 }: {
   icon: string;
   title: string;
   btnLink: string;
   btnText: string;
-  delay?: number;
+  newPage?: boolean;
   children: React.ReactNode;
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: -10 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{
-        delay,
-      }}
+      variants={itemVariants}
       className={cn(
-        'text-sm bg-card p-6 rounded-xl border border-border hover:shadow-md hover:-translate-y-2 transition-all duration-300',
+        'text-sm bg-card p-6 rounded-md border border-border hover:shadow-md',
         'flex flex-col justify-between items-center gap-4'
       )}
     >
@@ -42,6 +62,7 @@ function ServiceCard({
       </p>
       <Link
         href={btnLink}
+        target={newPage ? '_blank' : ''}
         className="w-max py-2 px-4 tracking-wider bg-primary text-primary-foreground rounded-lg hover:bg-primary-hover transition-colors"
       >
         {btnText}
@@ -63,7 +84,13 @@ export default function Services() {
           <p>Launch your front-end career.</p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-3">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: false, amount: 0.2 }}
+          className="grid gap-8 md:grid-cols-3"
+        >
           <ServiceCard
             icon="fa-laptop-code"
             title="網頁開發外包"
@@ -77,8 +104,8 @@ export default function Services() {
             icon="fa-chalkboard-teacher"
             title="轉職前端教練課"
             btnLink="https://calendly.com/ssuyuke/1v1"
-            btnText="預約諮詢"
-            delay={0.6}
+            btnText="預約 1v1 諮詢"
+            newPage
           >
             從基礎到專案實戰，量身打造學習計畫，提供專案實作、履歷優化與面試一條龍服務。我已協助
             10+ 種職業
@@ -89,11 +116,10 @@ export default function Services() {
             title="前端技能諮詢"
             btnLink="#contact"
             btnText="預約諮詢"
-            delay={0.9}
           >
             針對轉職前端提供專業諮詢服務：專案規劃、履歷優化、技能提升與面試策略，從技術到求職全方位支持
           </ServiceCard>
-        </div>
+        </motion.div>
       </Container>
     </section>
   );
